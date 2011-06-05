@@ -42,30 +42,6 @@ MainWindow::MainWindow(QWidget *parent) :
     emit(newData(QVariant::fromValue(names), QVariant::fromValue(urls)));
 
     QObject::connect(ui->actionLoad_images_from_dir, SIGNAL(triggered()), this, SLOT(loadImageDir()));
-
-    //    QHash<int, QByteArray> roleNames;
-    //    roleNames[ModelRoles::NameRole] = "name";
-    //    roleNames[ModelRoles::UrlRole] =  "url";
-    //    RoleItemModel* model = new RoleItemModel(roleNames);
-//    //QStandardItemModel model(4, 4);
-////    QStandardItemModel* model = new QStandardItemModel(5,2);
-//    for (int row = 0; row < 20; ++row) {
-//        QStandardItem* it = new QStandardItem();
-//        it->setData(QString("Item ") + ('a'+row), ModelRoles::NameRole);
-//        it->setData("tardis.jpg", ModelRoles::UrlRole);
-//        model->appendRow(it);
-//    }
-////    model->setHorizontalHeaderItem(0, new QStandardItem(QString("name")));
-////    model->setHorizontalHeaderItem(1, new QStandardItem(QString("url")));
-
-//    QDeclarativeContext* ctx = ui->declarativeView->rootContext();
-//    ctx->setContextProperty("itemList", model);
-
-////    QObject* itemListObject = rootObject->findChild<QObject*>("itemList");
-////    QAbstractItemModel* itemList = dynamic_cast<QAbstractTableModel*>(itemListObject);
-////    if(itemList == NULL)
-////        std::cerr << "itemList == NULL" << std::endl;
-//    ui->tableView->setModel(model);
 }
 
 MainWindow::~MainWindow()

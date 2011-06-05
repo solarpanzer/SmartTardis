@@ -18,18 +18,6 @@ import QtQuick 1.0
             height: sourceSize.height
         }
 
-        //width: GridView.cellWidth; height: GridView.cellHeight
-        //clip: true
-//            Column {
-//                //anchors.horizontalCenter: parent.horizontalCenter
-//                id: col
-
-//                Text {
-//                    anchors.horizontalCenter: parent.horizontalCenter
-//                    text: name
-//                }
-//            }
-
         MouseArea {
             id: mouseArea
             anchors.fill: parent

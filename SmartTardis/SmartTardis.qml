@@ -27,8 +27,6 @@ Item {
         }
     }
 
-
-
     GridView {
         id: gridview
         model: itemList
@@ -42,40 +40,5 @@ Item {
             width: 100; height: 100
             onItemClicked: smartTardis.itemClicked(name, url)
         }
-
     }
-
-//    MouseArea {
-//        anchors.fill:  parent
-//        onClicked: console.log("click!")
-//    }
-
-//    ListView {
-//        width: 180; height: 200
-//        id: listview
-//        model: list
-//        anchors.top: parent.top
-//        delegate: Row {
-//            Text { text: name + ", age " + age + "\n" }
-//        }
-//    }
-
-//    MouseArea {
-//        anchors.fill: parent
-//        onClicked: {
-//            list.append({"name": "Patient Nr. " + list.count} );
-//            console.debug(gridview.contentHeight)
-//        }
-//    }
 }
-
-//Rectangle {
-//    width: 360
-//    height: 360
-//    id: page
-//    color: "#AAAAAA"
-//    Text {
-//        anchors.centerIn: parent
-//        text: "Hello World"
-//    }
-
