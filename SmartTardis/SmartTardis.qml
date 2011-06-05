@@ -22,8 +22,8 @@ Item {
         objectName: "itemList"
 
         ListElement {
-            name: "a"
-            url: "file:///home/sebastian/tardis.jpg"
+            name: "NoData"
+            url: "tardis.jpg"
         }
     }
 
@@ -40,7 +40,7 @@ Item {
                 id: col
                 Image {
                     anchors.horizontalCenter: parent.horizontalCenter
-                    source: "file:///home/sebastian/tardis.jpg"
+                    source: url
                     id: tardisImage
                     width: 0.2 * sourceSize.width
                     height: 0.2 * sourceSize.height

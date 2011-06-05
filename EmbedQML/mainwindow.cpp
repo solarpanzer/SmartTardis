@@ -25,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
     for(int i=0; i<20; i++)
     {
         names.append(QString("Bild ") + ('a' + i));
-        urls.append("file:///home/sebastian/tardis.jpg");
+        urls.append("tardis.jpg");
     }
 
     QObject::connect(this, SIGNAL(newData(QVariant, QVariant)), rootObject, SLOT(setItems(QVariant, QVariant)));
