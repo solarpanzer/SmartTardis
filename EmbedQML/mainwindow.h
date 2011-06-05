@@ -24,6 +24,7 @@ private:
 
 private slots:
     void itemClicked(const QString& name, const QString& url);
+    void loadImageDir();
 
 };
 

@@ -11,8 +11,10 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    roleitemmodel.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    roleitemmodel.h
 
 FORMS    += mainwindow.ui

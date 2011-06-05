@@ -27,38 +27,6 @@ Item {
         }
     }
 
-    Component
-    {
-        id: labeledImageDelegate
-
-        Item {
-            width: col.width; height: col.height
-            //width: GridView.cellWidth; height: GridView.cellHeight
-            //clip: true
-            Column {
-                //anchors.horizontalCenter: parent.horizontalCenter
-                id: col
-                Image {
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    source: url
-                    id: tardisImage
-                    width: 0.2 * sourceSize.width
-                    height: 0.2 * sourceSize.height
-                }
-
-                Text {
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    text: name
-                }
-            }
-
-            MouseArea {
-                id: mouseArea
-                anchors.fill: parent
-                onClicked: smartTardis.itemClicked(name, url)
-            }
-        }
-    }
 
 
     GridView {
@@ -70,7 +38,10 @@ Item {
         cellWidth: 100
         cellHeight: 100
 
-        delegate:  labeledImageDelegate
+        delegate:  ImageDelegate {
+            width: 100; height: 100
+            onItemClicked: smartTardis.itemClicked(name, url)
+        }
 
     }
 
