@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QVariant>
 
 namespace Ui {
     class MainWindow;
@@ -15,8 +16,15 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+signals:
+    void newData(QVariant names, QVariant urls);
+
 private:
     Ui::MainWindow *ui;
+
+private slots:
+    void itemClicked(const QString& name, const QString& url);
+
 };
 
 #endif // MAINWINDOW_H

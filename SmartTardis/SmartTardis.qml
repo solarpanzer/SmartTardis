@@ -1,76 +1,25 @@
 import QtQuick 1.0
 
-Rectangle{
+Item {
+    id: smartTardis
     width: 300
     height: 300
 
+    signal itemClicked(string name, string url)
+
+    function setItems(names, urls)
+    {
+        console.debug(names.length)
+        itemList.clear()
+        for(var i=0; i<names.length; i++) {
+            var l = {"name": names[i], "url": urls[i]}
+            itemList.append(l)
+        }
+    }
+
     ListModel {
-        id: list
-
-        ListElement {
-            name: "a"
-            url: "file:///home/sebastian/tardis.jpg"
-        }
-
-        ListElement {
-            name: "a"
-            url: "file:///home/sebastian/tardis.jpg"
-        }
-
-        ListElement {
-            name: "a"
-            url: "file:///home/sebastian/tardis.jpg"
-        }
-
-        ListElement {
-            name: "a"
-            url: "file:///home/sebastian/tardis.jpg"
-        }
-
-        ListElement {
-            name: "a"
-            url: "file:///home/sebastian/tardis.jpg"
-        }
-
-        ListElement {
-            name: "a"
-            url: "file:///home/sebastian/tardis.jpg"
-        }
-
-        ListElement {
-            name: "a"
-            url: "file:///home/sebastian/tardis.jpg"
-        }
-
-        ListElement {
-            name: "a"
-            url: "file:///home/sebastian/tardis.jpg"
-        }
-
-        ListElement {
-            name: "a"
-            url: "file:///home/sebastian/tardis.jpg"
-        }
-
-        ListElement {
-            name: "a"
-            url: "file:///home/sebastian/tardis.jpg"
-        }
-
-        ListElement {
-            name: "a"
-            url: "file:///home/sebastian/tardis.jpg"
-        }
-
-        ListElement {
-            name: "a"
-            url: "file:///home/sebastian/tardis.jpg"
-        }
-
-        ListElement {
-            name: "a"
-            url: "file:///home/sebastian/tardis.jpg"
-        }
+        id: itemList
+        objectName: "itemList"
 
         ListElement {
             name: "a"
@@ -78,35 +27,43 @@ Rectangle{
         }
     }
 
-    Component {
-        id: tardis
-        Image {
-            source: "file:///home/sebastian/tardis.jpg"
-            id: tardisImage
-            scale: 0.3
-        }
-    }
-
-    Component {
+    Component
+    {
         id: labeledImageDelegate
-        Column {
-            Image {
-                anchors.horizontalCenter: parent.horizontalCenter
-                source: "file:///home/sebastian/tardis.jpg"
-                id: tardisImage
-                width: 0.2 * sourceSize.width
-                height: 0.2 * sourceSize.height
+
+        Item {
+            width: col.width; height: col.height
+            //width: GridView.cellWidth; height: GridView.cellHeight
+            //clip: true
+            Column {
+                //anchors.horizontalCenter: parent.horizontalCenter
+                id: col
+                Image {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    source: "file:///home/sebastian/tardis.jpg"
+                    id: tardisImage
+                    width: 0.2 * sourceSize.width
+                    height: 0.2 * sourceSize.height
+                }
+
+                Text {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: name
+                }
             }
-            Text {
-                anchors.horizontalCenter: parent.horizontalCenter
-                text: name
+
+            MouseArea {
+                id: mouseArea
+                anchors.fill: parent
+                onClicked: smartTardis.itemClicked(name, url)
             }
         }
     }
+
 
     GridView {
         id: gridview
-        model: list
+        model: itemList
 
         anchors.fill: parent
 
@@ -115,11 +72,12 @@ Rectangle{
 
         delegate:  labeledImageDelegate
 
-//        MouseArea {
-//            anchors.fill:  parent
-//            onClicked: console.log("" + parent.contentWidth + "/" + parent.contentHeight)
-//        }
     }
+
+//    MouseArea {
+//        anchors.fill:  parent
+//        onClicked: console.log("click!")
+//    }
 
 //    ListView {
 //        width: 180; height: 200
