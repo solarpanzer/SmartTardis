@@ -11,13 +11,6 @@
 
 #include "roleitemmodel.h"
 
-struct ModelRoles {
-    enum ItemRoles {
-        NameRole = Qt::UserRole + 1,
-        UrlRole,
-    };
-};
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
