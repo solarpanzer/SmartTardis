@@ -11,8 +11,10 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    MyImageIOPlugin.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    MyImageIOPlugin.h
 
 FORMS    += mainwindow.ui

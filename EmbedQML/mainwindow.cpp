@@ -4,16 +4,48 @@
 #include <QMessageBox>
 #include <QGraphicsObject>
 #include <QDeclarativeContext>
+#include <QDeclarativeEngine>
 #include <QStandardItemModel>
 #include <QFileDialog>
+#include <QImageReader>
+#include <QDeclarativeImageProvider>
+#include <QPluginLoader>
 
 #include <iostream>
+
+class DiskImageProvider : public QDeclarativeImageProvider
+{
+public:
+    DiskImageProvider()
+        : QDeclarativeImageProvider(QDeclarativeImageProvider::Image)
+    {
+    }
+
+    QImage requestImage(const QString &id, QSize *size, const QSize &requestedSize)
+    {
+        std::cout << "Delivering "<< id.toStdString() << "." << std::endl;
+        QImage img;
+        img.load(QString("/home/sebastian/bla/") + id);
+
+        int width= img.width();
+        int height = img.height();
+
+        if(size)
+            *size = QSize(width, height);
+
+        if(requestedSize.width() > 0 && requestedSize.height() > 0)
+            img=img.scaled(requestedSize);
+
+        return img;
+    }
+};
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    //ui->declarativeView->engine()->addImageProvider("bla", new DiskImageProvider);
     ui->declarativeView->setSource(QUrl::fromLocalFile("../SmartTardis/SmartTardis.qml"));
 
     QGraphicsObject* rootGraphicsObject = ui->declarativeView->rootObject();
@@ -33,7 +65,11 @@ MainWindow::MainWindow(QWidget *parent) :
 //    emit(newData(QVariant::fromValue(names), QVariant::fromValue(urls)));
 
     QObject::connect(ui->actionLoad_images_from_dir, SIGNAL(triggered()), this, SLOT(loadImageDir()));
-    loadImageDir("/home/sebastian/bla");
+    loadImageDir("/home/sebastian/zmos");
+
+    std::cout << " asdf " << QPluginLoader::staticInstances().count();
+    foreach (QObject *plugin, QPluginLoader::staticInstances())
+        std::cout << plugin->metaObject()->className();
 }
 
 MainWindow::~MainWindow()
@@ -61,6 +97,7 @@ void MainWindow::loadImageDir(QString dirName)
     filter.append("*.jpg");
     filter.append("*.png");
     filter.append("*.bmp");
+    filter.append("*.zmos");
     QFileInfoList imageList = myDir.entryInfoList(filter);
 
     QStringList names;
@@ -70,6 +107,7 @@ void MainWindow::loadImageDir(QString dirName)
         const QFileInfo& info = imageList[i];
         names.append(info.fileName());
         urls.append(info.filePath());
+        //urls.append(QString("image://bla/" + info.fileName()));
     }
 
     emit(newData(QVariant::fromValue(names), QVariant::fromValue(urls)));
