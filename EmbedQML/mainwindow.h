@@ -25,7 +25,7 @@ private:
 private slots:
     void itemClicked(const QString& name, const QString& url);
     void loadImageDir();
-
+    void loadImageDir(QString dirName);
 };
 
 #endif // MAINWINDOW_H

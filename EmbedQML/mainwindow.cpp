@@ -9,8 +9,6 @@
 
 #include <iostream>
 
-#include "roleitemmodel.h"
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -21,20 +19,21 @@ MainWindow::MainWindow(QWidget *parent) :
     QGraphicsObject* rootGraphicsObject = ui->declarativeView->rootObject();
     QObject* rootObject = dynamic_cast<QObject*>(rootGraphicsObject);
     QObject::connect(rootObject, SIGNAL(itemClicked(QString, QString)), this, SLOT(itemClicked(QString, QString)));
-
-    QStringList names;
-    QStringList urls;
-
-    for(int i=0; i<20; i++)
-    {
-        names.append(QString("Bild ") + ('a' + i));
-        urls.append("tardis.jpg");
-    }
-
     QObject::connect(this, SIGNAL(newData(QVariant, QVariant)), rootObject, SLOT(setItems(QVariant, QVariant)));
-    emit(newData(QVariant::fromValue(names), QVariant::fromValue(urls)));
+
+//    QStringList names;
+//    QStringList urls;
+
+//    for(int i=0; i<20; i++)
+//    {
+//        names.append(QString("Bild ") + ('a' + i));
+//        urls.append("tardis.jpg");
+//    }
+
+//    emit(newData(QVariant::fromValue(names), QVariant::fromValue(urls)));
 
     QObject::connect(ui->actionLoad_images_from_dir, SIGNAL(triggered()), this, SLOT(loadImageDir()));
+    loadImageDir("/home/sebastian/bla");
 }
 
 MainWindow::~MainWindow()
@@ -51,11 +50,17 @@ void MainWindow::itemClicked(const QString &name, const QString &url)
 void MainWindow::loadImageDir()
 {
     QString dirName = QFileDialog::getExistingDirectory(this, tr("Select Image Dir"));
+    loadImageDir(dirName);
+}
+
+void MainWindow::loadImageDir(QString dirName)
+{
     QDir myDir(dirName);
 
     QStringList filter;
     filter.append("*.jpg");
     filter.append("*.png");
+    filter.append("*.bmp");
     QFileInfoList imageList = myDir.entryInfoList(filter);
 
     QStringList names;
