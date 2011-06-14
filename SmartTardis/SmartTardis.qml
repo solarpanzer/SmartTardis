@@ -1,9 +1,11 @@
 import QtQuick 1.0
 
-Item {
+Rectangle {
     id: smartTardis
     width: 300
     height: 300
+
+    color: "black"
 
     signal itemClicked(string name, string url)
 
@@ -33,8 +35,8 @@ Item {
 
         anchors.fill: parent
 
-        cellWidth: 64
-        cellHeight: 64
+        cellWidth: 65
+        cellHeight: 65
 
         snapMode: "SnapToRow"
         flickDeceleration: 1000
