@@ -14,7 +14,6 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     MyImageIOPlugin.cpp
 
-HEADERS  += mainwindow.h \
-    MyImageIOPlugin.h
+HEADERS  += mainwindow.h
 
 FORMS    += mainwindow.ui

@@ -65,7 +65,8 @@ MainWindow::MainWindow(QWidget *parent) :
 //    emit(newData(QVariant::fromValue(names), QVariant::fromValue(urls)));
 
     QObject::connect(ui->actionLoad_images_from_dir, SIGNAL(triggered()), this, SLOT(loadImageDir()));
-    loadImageDir("/home/sebastian/zmos");
+    //loadImageDir("/home/sebastian/zmos");
+    loadImageDir("/home/sst/bla");
 
     std::cout << " asdf " << QPluginLoader::staticInstances().count();
     foreach (QObject *plugin, QPluginLoader::staticInstances())
@@ -97,7 +98,7 @@ void MainWindow::loadImageDir(QString dirName)
     filter.append("*.jpg");
     filter.append("*.png");
     filter.append("*.bmp");
-    filter.append("*.zmos");
+    filter.append("*.zmos1");
     QFileInfoList imageList = myDir.entryInfoList(filter);
 
     QStringList names;

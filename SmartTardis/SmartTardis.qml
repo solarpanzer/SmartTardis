@@ -33,11 +33,15 @@ Item {
 
         anchors.fill: parent
 
-        cellWidth: 100
-        cellHeight: 100
+        cellWidth: 64
+        cellHeight: 64
+
+        snapMode: "SnapToRow"
+        flickDeceleration: 1000
 
         delegate:  ImageDelegate {
-            width: 100; height: 100
+            //width: 100; height: 100
+            width: 64; height: 64
             onItemClicked: smartTardis.itemClicked(name, url)
         }
     }

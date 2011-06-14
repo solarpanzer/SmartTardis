@@ -15,8 +15,8 @@ import QtQuick 1.0
             opacity: 0.0
             onStatusChanged:  if (status == Image.Ready) { state="loaded"; } else { state="notloaded"; }
 
-            sourceSize.width: 80
-            sourceSize.height: 80
+            sourceSize.width: imgDelegateItem.width;
+            sourceSize.height: imgDelegateItem.height;
 
             width: sourceSize.width
             height: sourceSize.height
